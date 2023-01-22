@@ -1,0 +1,11 @@
+<h1>DM</h1>
+<% if user_signed_in? %>
+<h2>Hello <%= current_user.email %></h2>
+  <% @users.each do |u| %>
+  <p><a href="/users/<%= u.id %>"><%= u.email %>さん</a></p>
+  <hr>
+  <% end %>
+
+<% end %>
+
+<%= link_to "つぶやき一覧に戻る", talks_path %>

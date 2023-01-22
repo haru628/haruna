@@ -1,0 +1,33 @@
+
+<h3>つぶやき詳細</h3>
+
+<% @talk.tags.each do |tag| %>
+  <span><%= tag.name %></span>
+<% end %>
+
+<div class="talk">
+  <p><%= @talk.title %></p>
+  <p><%= @talk.body %></p>
+  <p><%= @talk.created_at %></p>
+
+  <% if user_signed_in? %>
+    <% if current_user.already_liked?(@talk) %>
+      <%= link_to talk_like_path(@talk), method: :delete do %>
+        <i class="fa-regular fa-face-laugh-squint"></i><%= @talk.likes.count %>
+      <% end %>
+    <% else %>
+      <%= link_to talk_likes_path(@talk), method: :post do %>
+        <i class="fa-regular fa-face-laugh-squint"></i></i><%= @talk.likes.count %>
+      <% end %>
+    <% end %>
+  <% else %>
+        <i class="fa-regular fa-face-laugh-squint"></i><%= @talk.likes.count %>
+  <% end %>
+</div>
+
+<h2>「それな！」したユーザー</h2>
+<% @talk.liked_users.each do |user| %>
+<li><%= user.email %></li>
+<% end %>
+
+<%= link_to "つぶやき一覧に戻る", talks_path %>

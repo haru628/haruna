@@ -1,0 +1,28 @@
+<h1>日記一覧</h1>
+
+<table>
+<p id="notice"><%= notice %></p>
+    <% @blogs.each do |blog| %>
+        <%= blog.title %>
+        <%= blog.start_time.strftime("%Y-%m-%d %H:%M") %>
+        <%= link_to '詳細', blog_path(blog.id) %>
+        <%= link_to '編集する', edit_blog_path(blog.id) %>
+        <%= link_to '削除する',blog_path(blog.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+</table>
+
+<br>
+
+<%= month_calendar events: @blogs do |date, blogs| %>
+  <%= date.day %>
+
+  <% blogs.each do |blog| %>
+    <div>
+      <%= link_to blog.title, blog %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "マイページに戻る", user_path(current_user.id) %>
+<%= link_to "ユーザー一覧に戻る", users_path %>
+<%= link_to "つぶやき一覧に戻る", talks_path %>

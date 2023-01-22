@@ -1,0 +1,57 @@
+<h3>つぶやき一覧ページ</h3>
+
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"talks",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+
+<%= link_to "ユーザー一覧", users_path %>
+
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+
+<%= link_to "新規投稿へ", new_talk_path %>
+<div class="talks-container">
+  <% @talks.each do |t| %>
+    <div class="talks">
+      <%= t.user.email %>
+      <%= t.title %>
+      <%= t.body %>
+      <% if user_signed_in? %>
+      <% if current_user.already_liked?(t) %>
+          <%= link_to talk_like_path(id: t.id, talk_id: t.id), method: :delete do %>
+            <i class="fa-regular fa-face-laugh-squint"></i><%= t.likes.count %>
+          <% end %>
+      <% else %>
+          <%= link_to talk_likes_path(id: t.id, talk_id: t.id), method: :post do %>
+            <i class="fa-regular fa-face-laugh-squint"></i><%= t.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+            <i class="fa-regular fa-face-laugh-squint"></i><%= t.likes.count %>
+  <% end %>
+
+      <%= t.created_at %>
+      <%= link_to "詳細へ", talk_path(t.id) %>
+      <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_talk_path(t.id) %>
+      <%= link_to "削除する", talk_path(t.id), method: :delete %>
+    <% end %> 
+    </div>
+  <% end %>
+
+  <%= form_tag({controller:"talks",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+  <% end %>
+
+    <%= submit_tag '検索' %>
+</div>
+<% end %>
+
+<%= form_tag({controller:"talks",action:"index"}, method: :get) do %>
+  <%= text_field_tag :tag %>
+  <%= submit_tag 'タグを追加' %>
+<% end %>

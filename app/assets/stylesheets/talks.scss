@@ -1,3 +1,68 @@
 // Place all the styles related to the talks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.top{
+    height: 50px;
+    background-color: rgb(90, 89, 89);
+}
+
+
+.oneArea {
+    display: flex;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    background-size: cover;
+  }
+
+.tubuyaki {
+    margin: 20px auto;
+    font-size: 40px;
+    width:500px;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(255, 255, 255);
+  }
+
+  .icon{
+    background: cover;
+  }
+
+  .talks{
+    border: solid #000;
+    margin: 50px;
+    justify-content: space-between;
+    border-radius: 5px;
+  }
+
+  .toukou{
+    display: flex;
+  }
+  
+
+  .group{
+    display: flex;
+
+  }
+
+  .timestamp{
+    font-size: 15px;
+    margin: 5px;
+  }
+
+  .iti{
+    margin-left: 70%;
+  }
+
+  .ni{
+    margin-top: 20px;
+    margin-left: 90%;
+  }
+
+//検索機能中央ぞろえ
+.kennsaku{
+    margin: 100px 725px 100px 725px; 
+}

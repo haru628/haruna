@@ -46,7 +46,8 @@
 
   header h1 {
     color: white;
-    margin-left: 30px;
+    font-size: 40px;
+    margin-left: 40px;
   }
   .header-list {
     display: flex;
@@ -61,3 +62,14 @@
     margin-right: 40px;
   }
 
+  footer {
+    color: white;
+    height: 30px;
+    background-color: #000;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    justify-content: flex-end;
+  }
